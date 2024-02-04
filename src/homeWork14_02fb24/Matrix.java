@@ -32,57 +32,64 @@ public class Matrix implements IMatrix {
 
     @Override
     public double getValueAt (int rowIndex, int colIndex) throws IndexOutOfBoundsException {
-        return data[rowIndex][colIndex];
+        if (checkRange(rowIndex, colIndex)) {
+            return data[rowIndex][colIndex];
+        } else {
+            return 0;
+        }
     }
 
     @Override
     public void setValueAt (int rowIndex, int colIndex, double value) throws IndexOutOfBoundsException {
-        data[rowIndex][colIndex] = value;
+        if (checkRange(rowIndex, colIndex)) {
+            data[rowIndex][colIndex] = value;
+        }
     }
 
     @Override
     public IMatrix add (IMatrix otherMatrix) throws IllegalArgumentException, NullPointerException {
-
-
-        Matrix result = new Matrix(new double[getRows()][getColumns()]);
-        for (int i = 0; i < data.length; i++) {
-            for (int j = 0; j < data[i].length; j++) {
-                result.setValueAt(i, j, otherMatrix.getValueAt(i, j) + this.getValueAt(i, j));
+        if (checkMatrix(otherMatrix)) {
+            Matrix result = new Matrix(new double[getRows()][getColumns()]);
+            for (int i = 0; i < data.length; i++) {
+                for (int j = 0; j < data[i].length; j++) {
+                    result.setValueAt(i, j, otherMatrix.getValueAt(i, j) + this.getValueAt(i, j));
+                }
             }
-        }
-        return result;
+            return result;
+        } else
+            return null;
     }
 
     @Override
     public IMatrix sub (IMatrix otherMatrix) throws IllegalArgumentException, NullPointerException {
-
-
-        Matrix result = new Matrix(new double[getRows()][getColumns()]);
-        for (int i = 0; i < data.length; i++) {
-            for (int j = 0; j < data[i].length; j++) {
-                result.setValueAt(i, j, Math.abs(otherMatrix.getValueAt(i, j) - this.getValueAt(i, j)));
+        if (checkMatrix(otherMatrix)) {
+            Matrix result = new Matrix(new double[getRows()][getColumns()]);
+            for (int i = 0; i < data.length; i++) {
+                for (int j = 0; j < data[i].length; j++) {
+                    result.setValueAt(i, j, Math.abs(otherMatrix.getValueAt(i, j) - this.getValueAt(i, j)));
+                }
             }
-        }
-        return result;
+            return result;
+        } else
+            return null;
     }
 
     @Override
     public IMatrix mul (IMatrix otherMatrix) throws IllegalArgumentException, NullPointerException {
-
-
-        Matrix result = new Matrix(new double[getRows()][getColumns()]);
-        for (int i = 0; i < data.length; i++) {
-            for (int j = 0; j < data[i].length; j++) {
-                result.setValueAt(i, j, otherMatrix.getValueAt(i, j) * this.getValueAt(i, j));
+        if (checkMatrix(otherMatrix)) {
+            Matrix result = new Matrix(new double[getRows()][getColumns()]);
+            for (int i = 0; i < data.length; i++) {
+                for (int j = 0; j < data[i].length; j++) {
+                    result.setValueAt(i, j, otherMatrix.getValueAt(i, j) * this.getValueAt(i, j));
+                }
             }
-        }
-        return result;
+            return result;
+        } else
+            return null;
     }
 
     @Override
     public IMatrix mul (double value) {
-
-
         Matrix result = new Matrix(new double[getRows()][getColumns()]);
         for (int i = 0; i < data.length; i++) {
             for (int j = 0; j < data[i].length; j++) {
@@ -94,8 +101,6 @@ public class Matrix implements IMatrix {
 
     @Override
     public IMatrix transpose () {
-
-
         Matrix result = new Matrix(new double[getRows()][getColumns()]);
         for (int i = 0; i < data.length; i++) {
             for (int j = 0; j < data[i].length; j++) {
@@ -161,5 +166,29 @@ public class Matrix implements IMatrix {
             }
         }
         System.out.println(str);
+    }
+
+    private boolean checkRange (int rowIndex, int colIndex) {
+        if (rowIndex < this.getRows() && colIndex < this.getColumns())
+            return true;
+        else {
+            System.out.println("Введённый индекс выходит за рамки массива.");
+            return false;
+        }
+    }
+
+    private boolean checkMatrix (IMatrix matrix) {
+        if (matrix != null) {
+            if (this.getRows() != matrix.getRows()
+                    && this.getColumns() != matrix.getColumns()) {
+                return true;
+            } else {
+                System.out.println("Размеры массива различаются.");
+                return false;
+            }
+        } else {
+            System.out.println("Введённый массив - null.");
+            return false;
+        }
     }
 }

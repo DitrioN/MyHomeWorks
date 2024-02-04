@@ -33,5 +33,7 @@ public class Main {
         Matrix d = new Matrix(matrixForD);
 
         System.out.println(d.isIdentityMatrix());
+
+        System.out.println(d.getValueAt(4, 4));
     }
 }
