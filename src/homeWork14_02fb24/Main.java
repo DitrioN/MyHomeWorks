@@ -1,5 +1,7 @@
 package homeWork14_02fb24;
 
+import java.util.LinkedList;
+
 public class Main {
     public static void main (String[] args) {
         double[][] matrixForA = {
@@ -16,24 +18,20 @@ public class Main {
         };
         Matrix b = new Matrix(matrixForB);
 
-        //b.printToConsole();
-        //a.printToConsole();
+        LinkedList<Integer> listA = new LinkedList <>();
+        listA.add(10);
+        listA.add(20);
+        listA.add(666);
+        listA.add(30);
 
-        Matrix c = (Matrix) a.transpose();
+        LinkedList<Integer> listB = new LinkedList <>();
+        listB.add(444);
+        listB.add(10);
+        listB.add(555);
+        listB.add(666);
 
-        //c.printToConsole();
-
-        double[][] matrixForD = {
-                {1, 0, 0, 0},
-                {0, 1, 0, 0},
-                {0, 0, 1, 0},
-                {0, 0, 0, 1}
-        };
-
-        Matrix d = new Matrix(matrixForD);
-
-        System.out.println(d.isIdentityMatrix());
-
-        System.out.println(d.getValueAt(4, 4));
+        for (Integer integer : new CollectionUtils().intersection(listA, listB)) {
+            System.out.println(integer);
+        }
     }
 }
