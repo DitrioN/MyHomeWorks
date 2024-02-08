@@ -17,13 +17,17 @@ public class ListUtilsImpl implements ListUtils {
     public List <Double> sortedList (List <Double> data) throws IllegalArgumentException {
         for (Double datum : data) if (datum == null) return null;
 
-        LinkedList<Double> result = new LinkedList <>(data);
+        /*LinkedList<Double> result = new LinkedList <>();
 
         for (int i = 0; i < data.size(); i++) {
-            if (data.get(i) > data.get(i + 1)) {
-
+            Double buffer = data.get(i);
+            for (int j = i; j < data.size(); j++) {
+                if (buffer > data.get(j)) {
+                    buffer = data.get(j);
+                }
             }
-        }
+            result.add(buffer);
+        }*/
 
         return null;
     }

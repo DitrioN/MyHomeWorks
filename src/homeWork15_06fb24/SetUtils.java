@@ -34,5 +34,5 @@ public interface SetUtils {
 	 * @param val5 аргумент функции
 	 * @return упорядоченное множество в заданном порядке
 	 */
-	Set<Integer> customOrderSet(int val1, int val2, int val3, int val4,int val5);
+	Set<Integer> customOrderSet(int val1, int val2, int val3, int val4, int val5);
 }

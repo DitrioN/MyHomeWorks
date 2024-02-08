@@ -11,6 +11,17 @@ public class Main {
         listA.add("Кнопка");
         listA.add("Степлер");
 
-        System.out.println(listA.size());
+        System.out.println(new ListUtilsImpl().asList("Скобы", "Карандаш", "Ручка", "Кнопка", "Степлер"));
+
+        LinkedList<Double> listB = new LinkedList <>();
+        listB.add(10.0);
+        listB.add(19.0);
+        listB.add(5.0);
+        listB.add(101.0);
+        listB.add(57.0);
+
+        System.out.println(new ListUtilsImpl().sortedList(listB));
+
+        System.out.println(new SetUtilsImpl().customOrderSet(10, 15, 20, 25, 30));
     }
 }
