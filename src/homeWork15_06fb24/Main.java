@@ -1,8 +1,11 @@
 package homeWork15_06fb24;
 
+import org.testng.annotations.Test;
+
+import java.awt.desktop.UserSessionEvent;
 import java.util.LinkedList;
 
-public class Main {
+public class Main extends Thread {
     public static void main (String[] args) {
         LinkedList<String> listA = new LinkedList <>();
         listA.add("Скобы");
