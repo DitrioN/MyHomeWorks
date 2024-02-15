@@ -25,22 +25,18 @@ public class StringUtilsImpl implements StringUtils {
     @Override
     public double[] findNumbers (String text) throws CustomException {
         String arrInt = "0123456789";
-        StringBuilder[] arrStr = new StringBuilder[0];
+        String[] arrStr = new String[0];
 
         for (int i = 0; i < text.length(); i++) {
             if (arrInt.contains(String.valueOf(text.charAt(i)))) {
-
-                StringBuilder[] bufStr = arrStr;
-                arrStr = new StringBuilder[bufStr.length + 1];
-                for (int f1 = 0; f1 < bufStr.length; f1++) arrStr[f1] = bufStr[f1];
-                arrStr[bufStr.length] = new StringBuilder();
+                StringBuilder neStr = new StringBuilder();
 
                 for (int j = i; j < text.length(); j++) {
                     if (arrInt.contains(String.valueOf(text.charAt(j)))) {
-                        arrStr[bufStr.length].append(text.charAt(j));
+                        neStr.append(text.charAt(j));
                     } else if (".".equals(String.valueOf(text.charAt(j)))) {
                         if (!".".equals(String.valueOf(text.charAt(j - 1)))) {
-                            arrStr[bufStr.length].append(text.charAt(j));
+                            neStr.append(text.charAt(j));
                         } else {
                             i = j;
                             break;
@@ -51,6 +47,12 @@ public class StringUtilsImpl implements StringUtils {
                     }
                 }
 
+                if (neStr.toString().contains(".")) {
+                    String[] bufStr = arrStr;
+                    arrStr = new String[bufStr.length + 1];
+                    for (int f1 = 0; f1 < bufStr.length; f1++) arrStr[f1] = bufStr[f1];
+                    arrStr[bufStr.length] = neStr.toString();
+                }
             }
         }
 
@@ -59,7 +61,7 @@ public class StringUtilsImpl implements StringUtils {
         } else {
             double[] result = new double[arrStr.length];
             for (int f1 = 0; f1 < result.length; f1++) {
-                result[f1] = Double.parseDouble(arrStr[f1].toString());
+                result[f1] = Double.parseDouble(arrStr[f1]);
             }
             return result;
         }
