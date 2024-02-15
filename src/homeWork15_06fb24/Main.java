@@ -23,8 +23,6 @@ public class Main extends Thread {
         listB.add(101.0);
         listB.add(57.0);
 
-        System.out.println(new ListUtilsImpl().sortedList(listB));
-
         System.out.println(new SetUtilsImpl().customOrderSet(10, 15, 20, 25, 30));
     }
 }
