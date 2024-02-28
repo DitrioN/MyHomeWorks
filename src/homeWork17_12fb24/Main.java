@@ -11,5 +11,10 @@ public class Main {
         for (double v : dou) {
             System.out.println(v);
         }
+
+        int a = 10;
+        Integer b = 10;
+
+        System.out.print(a==b);
     }
 }
