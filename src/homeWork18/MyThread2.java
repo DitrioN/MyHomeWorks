@@ -1,6 +1,9 @@
 package homeWork18;
 
+import org.apache.log4j.Logger;
+
 public class MyThread2 extends Thread {
+    public static final Logger LOGGER = Logger.getLogger(MyThread1.class);
     boolean worked = true;
     @Override
     public void run () {
@@ -14,8 +17,7 @@ public class MyThread2 extends Thread {
                     throw new RuntimeException(e);
                 }
             }
-
-            System.out.println(Main.num++ + " - я Поток Ричард");
+            LOGGER.debug(Main.num++ + " - я Поток" + getName());
             try {
                 Thread.sleep(Main.delay);
             } catch (InterruptedException e) {

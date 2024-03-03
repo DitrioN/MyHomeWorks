@@ -1,13 +1,16 @@
 package homeWork18;
 
+import org.apache.log4j.Logger;
+
 public class MyThread1 extends Thread {
+    public static final Logger LOGGER = Logger.getLogger(MyThread1.class);
     boolean worked = true;
     @Override
     public void run () {
         int sum = 0;
 
         while (worked) {
-            System.out.println(Main.num++ + " - я Поток Вася");
+            LOGGER.debug(Main.num++ + " - я Поток Вася");
             try {
                 Thread.sleep(Main.delay);
             } catch (InterruptedException e) {
